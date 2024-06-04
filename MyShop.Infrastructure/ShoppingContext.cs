@@ -25,5 +25,13 @@ namespace MyShop.Infrastructure
             modelBuilder.Entity<Orderline>().ToTable("Orderline");
             modelBuilder.Entity<Order>().ToTable("Order");
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MyShopAPI;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            }
+        }
+
     }
 }
